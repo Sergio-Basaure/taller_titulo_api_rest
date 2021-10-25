@@ -7,6 +7,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from .serializers import LoginToken
 from ..serializers import ClienteSerializer
 from ..models import Cliente
+from cliente.serializer_list import ClienteSerializerList
 
 class LoginApi(TokenObtainPairView):
     serializer_class = LoginToken
@@ -42,3 +43,4 @@ class Logout(GenericAPIView):
 class Registro(CreateAPIView):
     class Meta:
         model = Cliente
+        serializer_class = ClienteSerializerList
