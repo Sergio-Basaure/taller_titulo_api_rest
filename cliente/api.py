@@ -1,10 +1,12 @@
 from rest_framework.response import Response
 from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
 from .models import Cliente
 from .serializers import ClienteSerializer
 from .serializer_list import ClienteSerializerList
 
 class ClienteViewSet(viewsets.ModelViewSet):
+    permissio_classes = (IsAuthenticated,)
     serializer_class = ClienteSerializerList
     queryset = Cliente.objects.filter(estado = True)
 
