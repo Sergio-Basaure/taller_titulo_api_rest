@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate
 from rest_framework import status
-from rest_framework.generics import GenericAPIView
+from rest_framework.generics import GenericAPIView, CreateAPIView
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -38,3 +38,7 @@ class Logout(GenericAPIView):
             RefreshToken.for_user(cliente.first())
             return Response({'mensaje' : 'Session cerrada exitosamente'}, status = status.HTTP_200_OK)
         return Response({'error' : 'Cliente no existe'}, status = status.HTTP_400_BAD_REQUEST)
+
+class Registro(CreateAPIView):
+    class Meta:
+        model = Cliente

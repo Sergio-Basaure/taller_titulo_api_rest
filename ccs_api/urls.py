@@ -11,7 +11,7 @@ from local.reclamo.api import ReclamosApiViewSets
 from productos.producto.api import ProductoViewset
 from servicios.servicio.api import ServicioViewSet
 from cliente.api import ClienteViewSet
-from cliente.login.login import LoginApi, Logout
+from cliente.login.login import LoginApi, Logout, Registro
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
@@ -48,6 +48,7 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/login/', LoginApi.as_view(), name = 'login'),
     path('api/logout/', Logout.as_view(), name = 'logout'),
+    path('api/registro/', Registro.as_view(), name = 'registro')
 
 ]
 

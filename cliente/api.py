@@ -6,7 +6,7 @@ from .serializers import ClienteSerializer
 from .serializer_list import ClienteSerializerList
 
 class ClienteViewSet(viewsets.ModelViewSet):
-    permissio_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
     serializer_class = ClienteSerializerList
     queryset = Cliente.objects.filter(estado = True)
 
