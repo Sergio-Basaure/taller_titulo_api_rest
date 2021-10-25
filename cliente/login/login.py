@@ -41,6 +41,7 @@ class Logout(GenericAPIView):
         return Response({'error' : 'Cliente no existe'}, status = status.HTTP_400_BAD_REQUEST)
 
 class Registro(CreateAPIView):
+    serializer_class = ClienteSerializerList
     class Meta:
         model = Cliente
-        serializer_class = ClienteSerializerList
+        
