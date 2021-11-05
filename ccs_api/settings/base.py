@@ -108,13 +108,13 @@ AUTH_USER_MODEL = 'cliente.Cliente'
 
 
 
-# CORS_ALLOWED_ORIGINS  =  [ 
-#     "http: // localhost: 8080" ,  
-# ]
+CORS_ALLOWED_ORIGINS  =  [ 
+    "http://localhost:8080" ,  
+]
 
-# CORS_ORIGIN_WHITELIST = [
-#     "http: // localhost: 8080" , 
-# ]
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:8080" , 
+]
 
 SIMPLE_JWT = { 
     'ACCESS_TOKEN_LIFETIME' : timedelta(days=1),
