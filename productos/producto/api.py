@@ -5,4 +5,4 @@ from .models import Producto
 
 class ProductoViewset(viewsets.ReadOnlyModelViewSet):
     serializer_class = ProductoSerializer
-    queryset = Producto.objects.filter(estado = True)
+    queryset = Producto.objects.all()

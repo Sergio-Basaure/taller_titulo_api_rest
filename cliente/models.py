@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, UserManager
 
 class Cliente(AbstractBaseUser):
-    """Clase para modelar a los usuarios, hereda de AbstractBasaUser para abstraer el model user de django"""
     id = models.AutoField(primary_key = True)
     rut = models.CharField('Rut', max_length = 10, blank = False, null = False, unique = True)
     nombres = models.CharField('Nombres', max_length = 100, blank = False, null = False)
@@ -26,4 +25,4 @@ class Cliente(AbstractBaseUser):
         verbose_name_plural = 'Clientes'
 
     def __str__(self):
-        return f'{self.nombres} {self.apellidos}'
+        return f'{self.id}'

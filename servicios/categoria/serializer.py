@@ -4,4 +4,4 @@ from .models import CategoriaServicio
 class CategoriaServicioSerializer(serializers.ModelSerializer):
     class Meta:
         model = CategoriaServicio
-        fields = '__all__'
+        exclude = ('estado', 'fecha_creacion', 'fecha_actualizacion')

@@ -3,7 +3,8 @@ from .models import Producto
 
 
 class ProductoSerializer(serializers.ModelSerializer):
-    id_categoria = serializers.StringRelatedField()
+    # id_categoria = serializers.StringRelatedField()
     class Meta:
         model = Producto
-        exclude = ('estado', 'fecha_creacion', 'fecha_actualizacion')
+        # exclude = ('estado', 'fecha_creacion', 'fecha_actualizacion')
+        fields = '__all__'

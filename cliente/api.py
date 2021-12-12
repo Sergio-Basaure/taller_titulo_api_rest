@@ -43,8 +43,8 @@ class ClienteViewSet(viewsets.ModelViewSet):
 #             return Response(cliente_serializer.data)
 #         return Response(cliente_serializer.errors)
 
-#     def delete(self, request, pk):
-#         cliente = Cliente.objects.get(id = pk)
-#         cliente.estado = False
-#         cliente.save()
-#         return Response('Cliente eliminado')
+    # def delete(self, request, pk):
+    #     cliente = Cliente.objects.get(id = pk)
+    #     cliente.estado = False
+    #     cliente.save()
+    #     return Response('Cliente eliminado')

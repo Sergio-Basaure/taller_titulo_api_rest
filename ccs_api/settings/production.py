@@ -19,3 +19,4 @@ DATABASES = {
 }
 
 STATICFILES_DIRS = (BASE_DIR, 'static')
+MEDIAFILES_DIRS = (BASE_DIR, 'media')

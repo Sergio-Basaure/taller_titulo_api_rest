@@ -4,7 +4,7 @@ from rest_framework.generics import GenericAPIView, CreateAPIView
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.tokens import RefreshToken
-from .serializers import LoginToken
+from .serializers import LoginToken, LogoutSerializar
 from ..serializers import ClienteSerializer
 from ..models import Cliente
 from cliente.serializer_list import ClienteSerializerList
@@ -33,6 +33,7 @@ class LoginApi(TokenObtainPairView):
         return Response({'error': 'Password o nombre de usuario incorrecto'}, status = status.HTTP_401_UNAUTHORIZED)
 
 class Logout(GenericAPIView):
+    serializer_class = LogoutSerializar
     def post(self, request, *args, **kwargs):
         cliente = Cliente.objects.filter(id = request.data.get('cliente'))
         if cliente.exists():

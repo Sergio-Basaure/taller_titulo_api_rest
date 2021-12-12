@@ -1,23 +1,27 @@
-from rest_framework import status, viewsets
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from .models import Local,Reclamos
-from .serializers import *
+# from rest_framework import status, viewsets
+# from rest_framework.response import Response
+# from rest_framework.views import APIView
+# from .models import Local
+# from ..local.reclamo.models import Reclamos
+# from .serializers import LocalSerializer
+# from ..local.reclamo.serializer import ReclamoSerializer
 
 
-class LocalViewSet(viewsets.ReadOnlyModelViewSet):
-    # permission_classes = (IsAuthenticated,) # para bloquear solo la clases por token
-    serializer_class = LocalSerializer
-    queryset = Local.objects.filter(estado = True)
+# class LocalViewSet(viewsets.ReadOnlyModelViewSet):
+#     # permission_classes = (IsAuthenticated,) # para bloquear solo la clases por token
+#     serializer_class = LocalSerializer
+#     queryset = Local.objects.filter(estado = True)
 
 
-class ReclamosApiViewSets(viewsets.ModelViewSet):
-    serializer_class = ReclamoSerializer
+# class ReclamosApiViewSets(viewsets.ModelViewSet):
+#     serializer_class = ReclamoSerializer
 
-    def get_queryset(self,pk = None):
-        if pk == None:
-            return self.get_serializer().Meta.model.objects.filter(estado = True)
-        return self.get_serializer().Meta.model.objects.filter(id = pk, estado = True).first()
+#     def get_queryset(self,pk = None):
+#         if pk == None:
+#             return Reclamos.objects.filter(estado = True)
+#         return Reclamos.objects.filter(id = pk, estado = True)
+#         #     return self.get_serializer().Meta.model.objects.filter(estado = True)
+#         # return self.get_serializer().Meta.model.objects.filter(id = pk, estado = True).first()
 
 
 """
