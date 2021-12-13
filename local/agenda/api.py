@@ -1,5 +1,5 @@
 from rest_framework import viewsets, status
-from rest_framework.permissions import IsAuthenticated
+# from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 from .models import Agenda, Hora
@@ -17,7 +17,7 @@ class HoraViewsets(viewsets.ReadOnlyModelViewSet):
 class AgendaGenericViewSet(viewsets.GenericViewSet):
     serializer_class = AgendaSerializer
     queryset = Agenda.objects.all()
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
 
     def create(self, request):
         agenda_serializer = AgendaSerializer(data = request.data)

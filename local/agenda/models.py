@@ -1,7 +1,8 @@
 from django.db import models
 from local.local.models import Local
 from cliente.models import Cliente
-from codigo_qr.codigo import crear_qr
+# from codigo_qr.codigo import crear_qr
+from .correo import sendCorreo
 from django.db.models.signals import post_save
 from django.core.files import File
 import qrcode
@@ -25,7 +26,7 @@ class Agenda(models.Model):
     id_cliente = models.ForeignKey(Cliente, on_delete = models.CASCADE)
     fecha = models.DateField('Fecha', auto_now_add = False, auto_now = False)
     id_hora = models.ForeignKey(Hora, on_delete = models.CASCADE, blank = False, null = False)
-    # codigo_qr = models.ImageField(upload_to = 'qr', blank = True, null = True)
+    codigo_qr = models.ImageField(upload_to = 'qr', blank = True, null = True)
     estado = models.BooleanField('estado', default = True)
     fecha_creacion = models.DateField('Fecha de creación', auto_now = False, auto_now_add = True)
     fecha_actualizacion = models.DateField('fecha de actualización', auto_now_add = False, auto_now = True)
@@ -39,7 +40,7 @@ class Agenda(models.Model):
 
 def crearCodigoQr(sender, instance, created, **kwargs):
     if created:
-        data_qr = {
+        data = {
             'local' : instance.id_local.nombre,
             'direccion' : instance.id_local.direccion,
             'cliente' : f'{instance.id_cliente.nombres} {instance.id_cliente.apellidos}',
@@ -48,10 +49,12 @@ def crearCodigoQr(sender, instance, created, **kwargs):
             'hora' : instance.id_hora.hora,
             'reserva' : instance.id
         }
-        # print(data_qr)
-        # img = qrcode.make(data = data_qr)
-        # img.save('qr.png', format = 'png')
-        # instance.codigo_qr.save('qr.png', File(open('qr.png','rb')), save = True)
-        # return instance
-        crear_qr(data_qr)
+    
+        img = qrcode.make(instance.id)
+        img.save('qr.png', format = 'png')
+        instance.codigo_qr.save('qr.png', File(open('qr.png','rb')), save = True)
+        instance.save()
+
+        sendCorreo(data, instance.codigo_qr.url)
+
 post_save.connect(crearCodigoQr,sender = Agenda)
